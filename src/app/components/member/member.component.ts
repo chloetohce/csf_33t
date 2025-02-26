@@ -28,11 +28,17 @@ export class MemberComponent implements OnInit {
     this.hobbies.push(this.createHobbyRow())
   }
 
+  protected removeHobbyRow(i: number) {
+    this.hobbies.removeAt(i)
+    this.form.setControl("hobbies", this.hobbies)
+  }
+
   private createHobbyRow(): FormGroup {
     return this.fb.group({
       hobby: this.fb.control<string>('')
     })
   }
+  
   
   processForm() {
     const mem: Member =this.form.value

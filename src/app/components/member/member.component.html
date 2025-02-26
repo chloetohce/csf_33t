@@ -19,11 +19,14 @@
         <button type="button" (click)="addHobbyRow()">+</button>
 
         <div formArrayName="hobbies">
+            <p>{{hobbies.value | json}}</p>
             @for (h of hobbies.controls; let i = $index; track i) {
                 <mat-form-field [formGroupName]="i">
                     <mat-label>{{i + 1}}</mat-label>
                     <input matInput type="text" formControlName="hobby">
+                    <button type="button" (click)="removeHobbyRow(i)">-</button>
                 </mat-form-field>
+                <br>
             }
         </div>
     </div>
