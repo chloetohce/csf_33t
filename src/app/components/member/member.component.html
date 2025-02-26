@@ -1,0 +1,28 @@
+<form action="" [formGroup]="form" (submit)="processForm()">
+    <div>
+        <label for="name">Name</label>
+        <input type="text" formControlName="name" id="name">
+    </div>
+    <div>
+        <label for="email">Email</label>
+        <input type="text" formControlName="email" id="email">
+    </div>
+    <div>
+        <label for="phone">Phone</label>
+        <input type="text" formControlName="phone" id="phone">
+    </div>
+    <div>
+        Hobbies
+        <button type="button" (click)="addHobbyRow()">+</button>
+
+        <div formArrayName="hobbies">
+            @for (h of hobbies.controls; let i = $index; track i) {
+                <div [formGroupName]="i">
+                    <span>{{i + 1}}</span>
+                    <input type="text" formControlName="hobby">
+                </div>
+            }
+        </div>
+    </div>
+    <button type="submit" [disabled]="form.invalid">Submit</button>
+</form>
